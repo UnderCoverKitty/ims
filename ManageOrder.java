@@ -96,6 +96,10 @@ public class ManageOrder extends javax.swing.JFrame {
         // Make both tables non-editable
         makeTableNonEditable(tableCustomer);
         makeTableNonEditable(tableProduct);
+        
+        pname.setEditable(false);
+        pdesc.setEditable(false);
+        pprice.setEditable(false);
     }
 
     public void refresh() {
@@ -601,13 +605,15 @@ public class ManageOrder extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        
+        
         name.setEditable(true);
         email.setEditable(true);
         number.setEditable(true);
 
-        pname.setEditable(true);
-        pprice.setEditable(true);
-        pdesc.setEditable(true);
+        pname.setEditable(false);
+        pprice.setEditable(false);
+        pdesc.setEditable(false);
         pdesc.setEditable(true);
 
         DefaultTableModel model = (DefaultTableModel) tableCustomer.getModel();
@@ -824,6 +830,7 @@ public class ManageOrder extends javax.swing.JFrame {
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
         // Check if a customer is selected
+        
         if (customerPk == 0) {
             JOptionPane.showMessageDialog(null, "Please pick a customer before adding items to the cart.", "Warning", JOptionPane.WARNING_MESSAGE);
             return; // Exit the method if no customer is selected
@@ -973,6 +980,7 @@ public class ManageOrder extends javax.swing.JFrame {
                 int count = rs.getInt(1);
 
                 if (count > 0) {
+                    // Customer already exists
                     JOptionPane.showMessageDialog(null, "Customer already exists.");
                 } else {
                     // Database logic for adding a new customer
